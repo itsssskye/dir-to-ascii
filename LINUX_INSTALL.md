@@ -24,14 +24,14 @@ If Python is not installed, use your package manager:
 ```pip install --break-system-packages pyqt6 pyperclip```
 
 Alternatively, set up a virtual environment:
-```python3 -m venv venv
-source venv/bin/activate
-pip install pyqt6 pyperclip```
+```python3 -m venv venv```
+```source venv/bin/activate```
+```pip install pyqt6 pyperclip```
 
 2️⃣ Download the script:
 Clone the repository or download script.py manually.
-```git clone https://github.com/itsssskye/dir-to-ascii.git
-cd dir-to-ascii```
+```git clone https://github.com/itsssskye/dir-to-ascii.git```
+```cd dir-to-ascii```
 
 3️⃣ Run the script:
 ```python3 script.py```

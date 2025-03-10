@@ -1,6 +1,8 @@
 import sys
 import os
-from PyQt6.QtWidgets import QApplication, QTextEdit, QMainWindow, QPushButton, QVBoxLayout, QWidget, QInputDialog
+from PyQt6.QtWidgets import (
+    QApplication, QTextEdit, QMainWindow, QPushButton, QVBoxLayout, QWidget, QInputDialog
+)
 from PyQt6.QtGui import QDragEnterEvent, QDropEvent, QFont
 from PyQt6.QtCore import Qt
 import pyperclip  # Install with: pip install pyperclip
@@ -10,6 +12,10 @@ class FolderTreeApp(QMainWindow):
         super().__init__()
         self.setWindowTitle("Drag & Drop Folder to Generate ASCII Tree")
         self.setGeometry(100, 100, 600, 400)
+
+        # State
+        self.filter_list = []
+        self.show_hidden = False
 
         # Central widget
         central_widget = QWidget()
@@ -27,11 +33,18 @@ class FolderTreeApp(QMainWindow):
         self.textbox.setPlainText("🗂️ Drag and Drop a folder to get an ASCII representation")
         layout.addWidget(self.textbox)
 
-        # Filter button
-        self.filter_list = []
+        # Buttons
         self.filter_button = QPushButton("Set Filtered Files/Folders")
         self.filter_button.clicked.connect(self.set_filter)
         layout.addWidget(self.filter_button)
+
+        self.hidden_button = QPushButton("Show Hidden Files: OFF")
+        self.hidden_button.clicked.connect(self.toggle_hidden)
+        layout.addWidget(self.hidden_button)
+
+        self.copy_button = QPushButton("Copy ASCII Tree")
+        self.copy_button.clicked.connect(self.copy_to_clipboard)
+        layout.addWidget(self.copy_button)
 
         # Enable drag-and-drop
         self.setAcceptDrops(True)
@@ -41,6 +54,17 @@ class FolderTreeApp(QMainWindow):
         text, ok = QInputDialog.getText(self, "Set Filters", "Enter file/folder names to ignore (comma-separated):")
         if ok:
             self.filter_list = [item.strip() for item in text.split(",")]
+
+    def toggle_hidden(self):
+        """Toggles whether hidden files are included in the ASCII tree."""
+        self.show_hidden = not self.show_hidden
+        self.hidden_button.setText(f"Show Hidden Files: {'ON' if self.show_hidden else 'OFF'}")
+
+    def copy_to_clipboard(self):
+        """Copies the ASCII tree text to the clipboard."""
+        text = self.textbox.toPlainText()
+        if text:
+            pyperclip.copy(text)
 
     def dragEnterEvent(self, event: QDragEnterEvent):
         """Handles when a folder is dragged into the window."""
@@ -55,14 +79,16 @@ class FolderTreeApp(QMainWindow):
             if os.path.isdir(folder_path):
                 ascii_tree = self.generate_tree(folder_path)
                 self.textbox.setPlainText(ascii_tree)
-                pyperclip.copy(ascii_tree)  # Copy to clipboard
 
     def generate_tree(self, folder, prefix=""):
-        """Recursively generates an ASCII tree for the given folder, ignoring hidden and filtered files."""
+        """Recursively generates an ASCII tree for the given folder."""
         tree = f"{folder}\n"
-        items = sorted(
-            [item for item in os.listdir(folder) if not item.startswith(".") and item not in self.filter_list]
-        )
+        items = sorted(os.listdir(folder))
+
+        # Apply filters
+        items = [item for item in items if item not in self.filter_list]
+        if not self.show_hidden:
+            items = [item for item in items if not item.startswith(".")]
 
         for i, item in enumerate(items):
             path = os.path.join(folder, item)

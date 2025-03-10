@@ -6,8 +6,7 @@ Follow these steps to install and run the Directory to ASCII Generator on macOS.
 
 Ensure you have **Homebrew** installed. If not, install it with:
 
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)```
+```sh /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)```
 
 ## 🔧 Installation Steps
 
@@ -15,13 +14,12 @@ Ensure you have **Homebrew** installed. If not, install it with:
 ```brew install python```
 
 2️⃣ Install required dependencies:
-```brew install pyqt
-pip install pyperclip```
+```brew install pyqt```
+```pip install pyperclip```
 
 3️⃣ Download the script:
 Clone the repository or download script.py manually.
-```git clone https://github.com/itsssskye/dir-to-ascii.git
-cd dir-to-ascii```
+```git clone https://github.com/itsssskye/dir-to-ascii.git cd dir-to-ascii```
 
 4️⃣ Run the script:
 ```python3 script.py```

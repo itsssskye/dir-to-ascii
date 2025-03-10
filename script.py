@@ -10,7 +10,7 @@ import pyperclip  # Install with: pip install pyperclip
 class FolderTreeApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("ASCII Tree Generator")  # Updated window title
+        self.setWindowTitle("Directory to ASCII")  # Updated window title
         self.setGeometry(100, 100, 600, 400)
 
         # State

@@ -6,7 +6,7 @@ Follow these steps to install and run the Directory to ASCII Generator on macOS.
 
 Ensure you have **Homebrew** installed. If not, install it with:
 
-```sh /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)```
+```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)```
 
 ## 🔧 Installation Steps
 

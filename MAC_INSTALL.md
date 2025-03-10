@@ -28,7 +28,7 @@ cd dir-to-ascii```
 
 ## 🔄 Reusing Steps
 
-1️⃣ Go to the previous directory:
+1️⃣ Navigate to the script’s directory:
 ```cd dir-to-ascii```
 
 2️⃣ Run the script:
@@ -40,6 +40,6 @@ cd dir-to-ascii```
 	•	“Command not found” errors? Ensure Python and dependencies are installed correctly.
 	•	Issues with PyQt6? Try reinstalling it:
             ```brew reinstall pyqt6```
-	•	Need help? Check the README.md or open an issue on GitHub.
+	•	Need help? Check the [README](README).md) or open an issue on GitHub.
 
 🎉 You’re all set! Check the [README](README).md) on how to use it!

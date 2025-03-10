@@ -1,6 +1,6 @@
-# ASCII Tree Generator  
+# Directory to ASCII Generator
 
-ASCII Tree Generator is a **drag-and-drop GUI tool** that generates an **ASCII tree** representation of a folder’s structure.  
+Directory to ASCII Generator is a **drag-and-drop GUI tool** that generates an **ASCII tree** representation of a folder’s structure.  
 
 ## 🎯 How It Works  
 

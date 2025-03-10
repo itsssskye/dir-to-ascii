@@ -15,23 +15,23 @@ Directory to ASCII Generator is a **drag-and-drop GUI tool** that generates an *
 
 If you drop a folder like this:  
 
-```📂 MyProject
-├── 📂 src
-│   ├── main.py
-│   ├── utils.py
-├── 📄 README.md
-├── 📂 assets
-│   ├── image.png```
+📂 MyProject  
+├── 📂 src  
+│   ├── main.py  
+│   ├── utils.py  
+├── 📄 README.md  
+├── 📂 assets  
+│   ├── image.png  
 
 The tool will generate:  
 
-```MyProject
-├── src
-│   ├── main.py
-│   ├── utils.py
-├── README.md
-├── assets
-│   ├── image.png```
+MyProject  
+├── src  
+│   ├── main.py  
+│   ├── utils.py  
+├── README.md  
+├── assets  
+│   ├── image.png  
 
 ## 🖥 Supported Python Versions  
 

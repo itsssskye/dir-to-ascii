@@ -19,8 +19,8 @@ Verify installation by running the following command in Command Prompt (`Win + R
 
 2️⃣ Download the script:
 Clone the repository or download script.py manually.
-```git clone https://github.com/itsssskye/dir-to-ascii.git
-cd dir-to-ascii```
+```git clone https://github.com/itsssskye/dir-to-ascii.git```
+```cd dir-to-ascii```
 
 3️⃣ Run the script:
 ```python script.py```

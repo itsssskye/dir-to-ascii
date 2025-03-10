@@ -15,7 +15,7 @@ Ensure you have **Homebrew** installed. If not, install it with:
 ```brew install python```
 
 2️⃣ Install required dependencies:
-```brew install pyqt6
+```brew install pyqt
 pip install pyperclip```
 
 3️⃣ Download the script:

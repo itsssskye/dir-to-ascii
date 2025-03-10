@@ -19,7 +19,8 @@ Ensure you have **Homebrew** installed. If not, install it with:
 
 3️⃣ Download the script:
 Clone the repository or download script.py manually.
-```git clone https://github.com/itsssskye/dir-to-ascii.git cd dir-to-ascii```
+```git clone https://github.com/itsssskye/dir-to-ascii.git```
+```cd dir-to-ascii```
 
 4️⃣ Run the script:
 ```python3 script.py```

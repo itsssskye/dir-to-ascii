@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt6.QtWidgets import QApplication, QTextEdit, QMainWindow
-from PyQt6.QtGui import QDragEnterEvent, QDropEvent
+from PyQt6.QtGui import QDragEnterEvent, QDropEvent, QFont
 from PyQt6.QtCore import Qt
 import pyperclip  # Install with: pip install pyperclip
 
@@ -14,6 +14,12 @@ class FolderTreeApp(QMainWindow):
         # Text box to display ASCII tree
         self.textbox = QTextEdit(self)
         self.textbox.setReadOnly(True)
+        self.textbox.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.textbox.setFont(QFont("Arial", 12))
+
+        # Initial message with a "drag & drop" hint
+        self.textbox.setPlainText("🗂️ Drag and Drop a folder to get an ASCII representation")
+
         self.setCentralWidget(self.textbox)
 
         # Enable drag-and-drop
@@ -35,9 +41,11 @@ class FolderTreeApp(QMainWindow):
                 pyperclip.copy(ascii_tree)  # Copy to clipboard
 
     def generate_tree(self, folder, prefix=""):
-        """Recursively generates an ASCII tree for the given folder."""
+        """Recursively generates an ASCII tree for the given folder, ignoring hidden files."""
         tree = f"{folder}\n"
-        items = sorted(os.listdir(folder))
+        items = sorted(
+            [item for item in os.listdir(folder) if not item.startswith(".")]  # Ignore hidden files
+        )
         for i, item in enumerate(items):
             path = os.path.join(folder, item)
             connector = "└── " if i == len(items) - 1 else "├── "

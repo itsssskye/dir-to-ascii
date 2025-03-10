@@ -10,7 +10,7 @@ import pyperclip  # Install with: pip install pyperclip
 class FolderTreeApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Drag & Drop Folder to Generate ASCII Tree")
+        self.setWindowTitle("ASCII Tree Generator")  # Updated window title
         self.setGeometry(100, 100, 600, 400)
 
         # State
@@ -29,7 +29,7 @@ class FolderTreeApp(QMainWindow):
         self.textbox = QTextEdit()
         self.textbox.setReadOnly(True)
         self.textbox.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.textbox.setFont(QFont("Arial", 12))
+        self.textbox.setFont(QFont("Arial", 14, QFont.Weight.Bold))
         self.textbox.setPlainText("🗂️ Drag and Drop a folder to get an ASCII representation")
         layout.addWidget(self.textbox)
 
@@ -43,6 +43,7 @@ class FolderTreeApp(QMainWindow):
         layout.addWidget(self.hidden_button)
 
         self.copy_button = QPushButton("Copy ASCII Tree")
+        self.copy_button.setEnabled(False)  # Start disabled
         self.copy_button.clicked.connect(self.copy_to_clipboard)
         layout.addWidget(self.copy_button)
 
@@ -51,7 +52,7 @@ class FolderTreeApp(QMainWindow):
 
     def set_filter(self):
         """Opens an input dialog for the user to enter files/folders to ignore."""
-        text, ok = QInputDialog.getText(self, "Set Filters", "Enter file/folder names to ignore (comma-separated):")
+        text, ok = QInputDialog.getText(self, "Set Filters", "Enter file/folder names to ignore (comma-separated):", text=", ".join(self.filter_list))
         if ok:
             self.filter_list = [item.strip() for item in text.split(",")]
 
@@ -79,6 +80,7 @@ class FolderTreeApp(QMainWindow):
             if os.path.isdir(folder_path):
                 ascii_tree = self.generate_tree(folder_path)
                 self.textbox.setPlainText(ascii_tree)
+                self.copy_button.setEnabled(True)  # Enable copy button
 
     def generate_tree(self, folder, prefix=""):
         """Recursively generates an ASCII tree for the given folder."""
@@ -105,6 +107,7 @@ class FolderTreeApp(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setApplicationName("ASCII Tree Generator")  # Updated application name for macOS dock
     window = FolderTreeApp()
     window.show()
     sys.exit(app.exec())
